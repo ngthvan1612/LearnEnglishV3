@@ -12,6 +12,7 @@ using System.Reflection;
 using LearnEnglish.Infrastructure.Repositories;
 using LearnEnglish.Domain.Aggregate.TopicTrees;
 using System.Diagnostics;
+using LearnEnglish.App.GUI.Support;
 
 namespace LearnEnglish.App.GUI.ChuDe
 {
@@ -30,30 +31,37 @@ namespace LearnEnglish.App.GUI.ChuDe
             this.ShowInTaskbar = false;
             this.pnListFolders.AutoScroll = true;
             this.DoubleBuffered = true;
-
-            this.renderPath();
-            this.renderListFolders();
         }
 
         private void renderListFolders()
         {
-            Task.WaitAll(renderListFoldersAsync());
+            renderListFoldersAsync();
+        }
+
+        private void toggleDoubleBufferedPanel(Panel pn, bool value)
+        {
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
+               | BindingFlags.Instance | BindingFlags.NonPublic, null,
+               pn, new object[] { value }) ;
         }
 
         private Task renderListFoldersAsync()
         {
+            this.toggleDoubleBufferedPanel(this.pnListFolders, true);
+
             this.pnPath.Enabled = false;
-            this.statusLabel.Text = "Đang tải";
-            this.progressStatus.MarqueeAnimationSpeed = 10;
-            this.progressStatus.Style = ProgressBarStyle.Marquee;
             this.pnListFolders.Controls.Clear();
+            this.pnListFolders.AutoScroll = true;
+
             int? partentId = null;
             if (this.path.Count > 0)
                 partentId = this.path[this.path.Count - 1].Id;
 
             Stack<Control> controls = new Stack<Control>();
 
-            var listChildren = this.topicTreeRepository.getListChildrenByParentId(partentId);
+            var listChildren = this.topicTreeRepository.getListFolderAndListByParentId(partentId);
+
+            this.pnListFolders.VerticalScroll.Value = 0;
 
             foreach (var child in listChildren)
             {
@@ -62,6 +70,7 @@ namespace LearnEnglish.App.GUI.ChuDe
                     ctl = new ucChuDeItem(ChuDeItemType.Folder);
                 else
                     ctl = new ucChuDeItem(ChuDeItemType.List);
+                ctl.KeyDown += this.frmQuanLyChuDe_KeyDown;
                 ctl.Content = child.Name;
                 ctl.Dock = DockStyle.Top;
                 ctl.OnItemClicked += (sender) =>
@@ -96,9 +105,26 @@ namespace LearnEnglish.App.GUI.ChuDe
 
                     if (answer == DialogResult.Yes)
                     {
-                        this.topicTreeRepository.deleteTopic(child);
+                        new frmLoading(() =>
+                        {
+                            this.topicTreeRepository.deleteTopic(child);
+                        })
+                        { Text = "Đang xóa dữ liệu..." }.ShowDialog();
                         this.renderListFolders();
                         this.renderPath();
+                    }
+                };
+                ctl.OnItemMoveClicked += (sender) =>
+                {
+                    var frmListDestination = new frmSelectTopicTree()
+                    {
+                        Text = "Chọn nơi mới"
+                    };
+                    if (frmListDestination.ShowDialog() == DialogResult.OK)
+                    {
+                        this.topicTreeRepository.changeTopicParentByParentId(child, frmListDestination.SelectedParentId);
+                        this.renderListFolders();
+
                     }
                 };
                 controls.Push(ctl);
@@ -110,10 +136,33 @@ namespace LearnEnglish.App.GUI.ChuDe
                 this.pnListFolders.Controls.Add(ctl);
             }
             this.pnPath.Enabled = true;
-            this.statusLabel.Text = "OK";
-            this.progressStatus.Style = ProgressBarStyle.Blocks;
+
+            this.toggleDoubleBufferedPanel(this.pnListFolders, false);
+
+            if (this.pnListFolders.Controls.Count > 0)
+            {
+                Application.DoEvents();
+                this.pnListFolders.ScrollControlIntoView(this.pnListFolders.Controls[0]);
+                this.pnListFolders.PerformLayout();
+                this.pnListFolders.ScrollControlIntoView(this.pnListFolders.Controls[this.pnListFolders.Controls.Count - 1]);
+                this.PerformLayout();
+            }
+
+            foreach (Control ctl in this.pnListFolders.Controls)
+            {
+                this.addKeyDownEventRecursive(ctl);
+            }
 
             return Task.CompletedTask;
+        }
+
+        private void addKeyDownEventRecursive(Control ctl)
+        {
+            ctl.KeyDown += this.frmQuanLyChuDe_KeyDown;
+            foreach (Control child in ctl.Controls)
+            {
+                this.addKeyDownEventRecursive(child);
+            }
         }
 
         private void renderPath()
@@ -154,9 +203,9 @@ namespace LearnEnglish.App.GUI.ChuDe
                     while (this.path.Count > 0 && this.path.Last().Id != topicTree.Id)
                     {
                         this.path.RemoveAt(this.path.Count - 1);
-                        this.renderListFolders();
-                        this.renderPath();
                     }
+                    this.renderPath();
+                    this.renderListFolders();
                 };
 
                 Label spa = new Label();
@@ -167,13 +216,18 @@ namespace LearnEnglish.App.GUI.ChuDe
                 lb.Dock = spa.Dock = DockStyle.Left;
 
                 controls.Push(spa);
-                controls.Push(lb); 
+                controls.Push(lb);
             }
 
             while (controls.Count > 0)
             {
                 var ctl = controls.Pop();
                 this.pnPath.Controls.Add(ctl);
+            }
+
+            foreach (Control ctl in this.pnPath.Controls)
+            {
+                this.addKeyDownEventRecursive(ctl);
             }
         }
 
@@ -215,19 +269,67 @@ namespace LearnEnglish.App.GUI.ChuDe
             }
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        private void frmQuanLyChuDe_KeyDown(object sender, KeyEventArgs e)
         {
-            if (keyData == (Keys.Control | Keys.F))
+            Debug.WriteLine(e.KeyCode.ToString());
+            if (e.Control && e.KeyCode == Keys.N)
             {
                 this.btnAddNewFolder_Click(null, null);
-                return true;
             }
-            else if (keyData == (Keys.Control | Keys.L))
+            else if (e.Control && e.KeyCode == Keys.M)
             {
                 this.btnAddNewList_Click(null, null);
-                return true;
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void frmQuanLyChuDe_Load(object sender, EventArgs e)
+        {
+            this.renderPath();
+            this.renderListFolders();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.Filter = "Learn English Export File (*.lee)|*.lee";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    int? parentId = null;
+                    if (this.path.Count > 0)
+                        parentId = this.path.Last().Id;
+                    this.topicTreeRepository.exportTopic(dialog.FileName, parentId);
+                }
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "Learn English Export File (*.lee)|*.lee";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    int? parentId = null;
+                    if (this.path.Count > 0)
+                        parentId = this.path.Last().Id;
+                    frmLoading frm = new frmLoading(() =>
+                    {
+                        try
+                        {
+                            this.topicTreeRepository.importTopic(dialog.FileName, parentId);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi khi import:\n" + ex.Message, "Lỗi",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    });
+                    frm.Text = "Đang import...";
+                    frm.ShowDialog();
+                    this.renderListFolders();
+                }
+            }
         }
     }
 }

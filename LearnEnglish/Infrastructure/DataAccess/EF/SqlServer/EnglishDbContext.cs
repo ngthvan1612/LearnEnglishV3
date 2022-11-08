@@ -1,6 +1,7 @@
-﻿using LearnEnglish.Domain.Aggregate.LearningStatuses;
+﻿
 using LearnEnglish.Domain.Aggregate.TopicTrees;
 using LearnEnglish.Domain.Aggregate.Vocabs;
+using LearnEnglish.Infrastructure.Setting;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LearnEnglish.Infrastructure.DataAccess
+namespace LearnEnglish.Infrastructure.DataAccess.EF.SqlServer
 {
     public class EnglishDbContext : DbContext
     {
@@ -18,12 +19,12 @@ namespace LearnEnglish.Infrastructure.DataAccess
 
         public EnglishDbContext()
         {
-
+            this.Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=HocTiengAnh_05;Integrated Security=True;");
+            optionsBuilder.UseSqlite(ESetting.Setting.SqliteConnectionString);
             base.OnConfiguring(optionsBuilder);
         }
 

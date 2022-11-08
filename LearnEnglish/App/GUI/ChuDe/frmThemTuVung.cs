@@ -90,7 +90,7 @@ namespace LearnEnglish.App.GUI.ChuDe
         {
             using (var dlg = new OpenFileDialog())
             {
-                dlg.Filter = "Mp3 file (*.mp3)|*.mp3";
+                dlg.Filter = "WAV file (*.wav)|*.wav";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     this.tbFilename.Text = dlg.FileName;

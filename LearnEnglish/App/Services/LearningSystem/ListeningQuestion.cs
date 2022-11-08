@@ -11,8 +11,9 @@ namespace LearnEnglish.App.Services.LearningSystem
 {
     public class ListeningQuestion : QuestionAbstract
     {
+
         public ListeningQuestion(Vocab vocab)
-            : base(buildQuestionDesign("Ghi lại những gì bạn nghe thấy"), vocab.Eng, vocab.Audio, vocab.Id)
+            : base(vocab, buildQuestionDesign("Ghi lại những gì bạn nghe thấy"), vocab.Eng, vocab.Audio, vocab.Id)
         {
             
         }
@@ -20,7 +21,12 @@ namespace LearnEnglish.App.Services.LearningSystem
         private static string buildQuestionDesign(string question)
         {
             string questionHtmlEncode = HttpUtility.HtmlEncode(question);
-            return $"<div style='text-align:center;vertial-align:center;line-height:100%;font-size:20px;'><span style='color:#964B00;'>{questionHtmlEncode}</span></div>";
+            return 
+                $"<div style='text-align:center;vertial-align:center;line-height:100%;font-size:25px;'>" +
+                $"  <span style='color:red;'>" +
+                $"    {questionHtmlEncode}" +
+                $"  </span>" +
+                $"</div>";
         }
     }
 }

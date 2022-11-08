@@ -1,7 +1,10 @@
-﻿using LearnEnglish.App.GUI.ChuDe;
+﻿using LearnEnglish.App.GUI.CaiDat;
+using LearnEnglish.App.GUI.ChuDe;
 using LearnEnglish.App.GUI.Hoc;
 using LearnEnglish.App.GUI.Support;
+using LearnEnglish.App.Hooking;
 using LearnEnglish.App.Services;
+using LearnEnglish.Infrastructure.Setting;
 
 namespace LearnEnglish.App.GUI
 {
@@ -12,17 +15,17 @@ namespace LearnEnglish.App.GUI
             InitializeComponent();
         }
 
-        private void menuDsChuDe_Click(object sender, EventArgs e)
+        private void btnQuanLyTuVung_Click(object sender, EventArgs e)
         {
             new frmQuanLyChuDe().ShowDialog();
         }
 
-        private void menuTuVung_Click(object sender, EventArgs e)
+        private void btnCaiDat_Click(object sender, EventArgs e)
         {
-            
+            new frmCaiDat().ShowDialog();
         }
 
-        private void menuLearning_Click(object sender, EventArgs e)
+        private void btnHoc_Click(object sender, EventArgs e)
         {
             var frm = new frmChonTopic();
             if (frm.ShowDialog() == DialogResult.OK)
@@ -36,14 +39,19 @@ namespace LearnEnglish.App.GUI
             }
         }
 
-        private void menuExport_Click(object sender, EventArgs e)
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            frmLoading frm = new frmLoading(() =>
+            {
+                ESetting.Setting.saveSetting();
+            })
+            { Text = "Đang lưu cài đặt ", TopMost = true };
+            frm.ShowDialog();
         }
 
-        private void menuImport_Click(object sender, EventArgs e)
+        private void btnThongKe_Click(object sender, EventArgs e)
         {
-            
+            MessageBox.Show("Tính năng này chưa có, bạn chờ trong version sau nhé!");
         }
     }
 }

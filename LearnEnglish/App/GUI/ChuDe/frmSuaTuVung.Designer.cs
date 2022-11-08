@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.btnChooseFile = new System.Windows.Forms.Button();
@@ -39,20 +38,10 @@
             this.tbEng = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnCancel = new LearnEnglish.App.GUI.Components.RoundedButton();
+            this.btnOK = new LearnEnglish.App.GUI.Components.RoundedButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(302, 303);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 32);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Cập nhật";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
             // 
@@ -164,17 +153,50 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Tiếng anh";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Gray;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(359, 297);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(142, 45);
+            this.btnCancel.TabIndex = 12;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // btnOK
+            // 
+            this.btnOK.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.Location = new System.Drawing.Point(211, 297);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(142, 45);
+            this.btnOK.TabIndex = 11;
+            this.btnOK.Text = "Lưu";
+            this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmSuaTuVung
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(723, 347);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbVie);
             this.Controls.Add(this.tbEng);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "frmSuaTuVung";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sửa từ vựng";
@@ -187,8 +209,6 @@
         }
 
         #endregion
-
-        private Button button1;
         private GroupBox groupBox1;
         private Button btnChooseFile;
         private TextBox tbFilename;
@@ -199,5 +219,7 @@
         private Label label2;
         private Label label1;
         private RadioButton radioButton1;
+        private Components.RoundedButton btnCancel;
+        private Components.RoundedButton btnOK;
     }
 }

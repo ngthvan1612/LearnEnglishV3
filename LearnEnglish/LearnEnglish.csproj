@@ -6,19 +6,42 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>eng-_1_.ico</ApplicationIcon>
+    <Version>1.0.0</Version>
+    <Authors>Nguyễn Thành Văn</Authors>
+    <Company>HCMUTE</Company>
+    <Product>Phần mềm học từ vựng tiếng anh</Product>
+    <Copyright>Nguyễn Thành Văn @ 2022</Copyright>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <PackageLicenseFile>C:\Users\Nguyen Thanh Van\Desktop\Nguyễn Thành Văn.pfx</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\add-file.png" />
+    <None Remove="Resources\checklist.png" />
+    <None Remove="Resources\export.png" />
+    <None Remove="Resources\folder.png" />
+    <None Remove="Resources\icons8-folder-48.png" />
+    <None Remove="Resources\import.png" />
     <None Remove="Resources\luyen-thi-toeic-philippines-du-hoc-glolink-1.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="eng-_1_.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dot-net-transitions" Version="1.2.1" />
     <PackageReference Include="Flurl" Version="3.0.6" />
     <PackageReference Include="Flurl.Http" Version="3.2.4" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.45" />
     <PackageReference Include="HtmlRenderer.Core" Version="1.5.0.6" />
     <PackageReference Include="HtmlRenderer.WinForms" Version="1.5.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -28,6 +51,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\add-file.png" />
+    <Resource Include="Resources\checklist.png" />
+    <Resource Include="Resources\export.png" />
+    <Resource Include="Resources\folder.png" />
+    <Resource Include="Resources\icons8-folder-48.png" />
+    <Resource Include="Resources\import.png" />
     <Resource Include="Resources\luyen-thi-toeic-philippines-du-hoc-glolink-1.png" />
   </ItemGroup>
 
@@ -36,6 +65,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -48,6 +82,13 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

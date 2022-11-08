@@ -34,13 +34,15 @@ namespace LearnEnglish.Domain.Aggregate.Vocabs
             this.Audio = newAudio;
         }
 
-        public void changeParent(TopicTree topicTree)
+        public void changeParent(int topicTreeId)
         {
-            this.TopicTreeId = topicTree.Id;
+            this.TopicTreeId = topicTreeId;
         }
 
         public void deleteVocab()
         {
+            //OPTIMIZE DATABASE
+            this.Audio = null;
             this.DeletedAt = DateTime.Now;
         }
     }

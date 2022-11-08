@@ -1,5 +1,6 @@
 using LearnEnglish.App.GUI;
 using LearnEnglish.Infrastructure.DataAccess;
+using LearnEnglish.Infrastructure.DataAccess.EF.SqlServer;
 using System;
 
 namespace LearnEnglish
@@ -12,7 +13,6 @@ namespace LearnEnglish
         [STAThread]
         public static void Main()
         {
-            new EnglishDbContext();
             ApplicationConfiguration.Initialize();
             Application.Run(new frmMain());
         }

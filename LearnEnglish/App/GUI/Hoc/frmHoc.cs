@@ -1,5 +1,8 @@
-﻿using LearnEnglish.App.Services;
+﻿using LearnEnglish.App.GUI.Support;
+using LearnEnglish.App.Services;
 using LearnEnglish.App.Services.LearningSystem;
+using LearnEnglish.Domain.Aggregate.Vocabs;
+using LearnEnglish.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +14,14 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheArtOfDev.HtmlRenderer.WinForms;
+using Transitions;
 
 namespace LearnEnglish.App.GUI.Hoc
 {
     public partial class frmHoc : Form
     {
+        private readonly IVocabRepository vocabRepository = new VocabRepository();
         private readonly ILearningQueue learningQueue;
         private readonly List<int> topicIds;
 
@@ -34,8 +40,10 @@ namespace LearnEnglish.App.GUI.Hoc
 
         private void prepareVocabs()
         {
-            //var vocabs = this.topicIds.SelectMany(u => this.vocabRepository.ListVocabs(u)).ToList();
-            //this.learningQueue.Prepare(vocabs);
+            var vocabs = this.topicIds.SelectMany(u => this.vocabRepository.listVocabsByParentId(u)).ToList();
+            frmLoading frm = new frmLoading(() => { this.learningQueue.Prepare(vocabs); });
+            frm.Text = "Đang trộn câu hỏi";
+            frm.ShowDialog();
         }
 
         private void updateProgress()
@@ -61,11 +69,18 @@ namespace LearnEnglish.App.GUI.Hoc
 
         private int wrongCounter = 0;
 
+        private void storeResult(int vocabId, string result)
+        {
+            this.vocabRepository.addResult(new Vocab() { Id = vocabId }, result);
+        }
+
         private void checkCurrentQuestion()
         {
             var question = this.learningQueue.CurrentQuestion();
             if (question.CheckAnswer(this.tbAnswer.Text))
             {
+                this.storeResult(question.GetId(), "OK");
+
                 this.learningQueue.OnCorrentAnswer();
 
                 if (this.learningQueue.AnsweredQuestion() + 1 == this.learningQueue.TotalQuestion())
@@ -83,16 +98,19 @@ namespace LearnEnglish.App.GUI.Hoc
             }
             else
             {
+                this.storeResult(question.GetId(), "FAIL");
+
+                string userAnswer = this.tbAnswer.Text;
                 this.learningQueue.OnWrongAnswer();
                 this.resetCurrentQuestion();
                 this.wrongCounter++;
                 if (this.wrongCounter >= 3)
                 {
-                    MessageBox.Show("Đáp án là:\n" + this.learningQueue.CurrentQuestion().Answer);
+                    new frmSoKhop(this.learningQueue.CurrentQuestion().Answer, userAnswer.Trim()).ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("Sai!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Sai!", "Thông báo", MessageBoxButtons.OK);
                 }
                 this.tbAnswer.Text = "";
             }

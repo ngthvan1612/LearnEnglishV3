@@ -64,24 +64,33 @@ namespace LearnEnglish.App.Services.LearningSystem
         }
 
         private static void ShuffleList<T>(List<T> list)
+            where T : QuestionAbstract
         {
+            
+            Func<int, bool> checkNearest = (i) =>
+            {
+                if (i > 0 && list[i].IsEqual(list[i - 1]))
+                    return false;
+                if (i + 1 < list.Count && list[i].IsEqual(list[i + 1]))
+                    return false;
+                return true;
+            };
+
+            Action<int, int> swap = (i, j) =>
+            {
+                var temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+            };
+
             int n = list.Count;
             Random random = new Random(Guid.NewGuid().GetHashCode());
-            for (int step = 0; step < 71; ++step)
+            for (int step = 0; step < (1 << 4); ++step)
             {
-                for (int i = 1; i < n; ++i)
+                for (int i = 0; i < n; ++i)
                 {
-                    int j = random.Next() % i;
-                    var temp = list[i];
-                    list[i] = list[j];
-                    list[j] = temp;
-                }
-                for (int i = 1; i < n; ++i)
-                {
-                    int j = ((i * (random.Next() % n)) ^ (i * (random.Next() % n))) % n;
-                    var temp = list[i];
-                    list[i] = list[j];
-                    list[j] = temp;
+                    int j = random.Next() % n;
+                    swap(i, j);
                 }
             }
         }
@@ -91,13 +100,17 @@ namespace LearnEnglish.App.Services.LearningSystem
             this.questions = new List<QuestionAbstract>();
             for (int i = 0; i < this._listeningCount; ++i)
             {
-                this.questions.AddRange(questions.Select(u => new ListeningQuestion(u)));
+                var batch = questions.Select(u => new ListeningQuestion(u)).ToList();
+                ShuffleList(batch);
+                this.questions.AddRange(batch);
             }
             for (int i = 0; i < this._meaningCount; ++i)
             {
-                this.questions.AddRange(questions.Select(u => new MeaningQuestion(u)));
+                var batch = questions.Select(u => new MeaningQuestion(u)).ToList();
+                ShuffleList(batch);
+                this.questions.AddRange(batch);
             }
-            while (true)
+            for (int step = 0; step < 127; ++step)
             {
                 ShuffleList(this.questions);
                 bool ok = true;

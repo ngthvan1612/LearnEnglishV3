@@ -28,22 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnCancel = new LearnEnglish.App.GUI.Components.RoundedButton();
+            this.btnOK = new LearnEnglish.App.GUI.Components.RoundedButton();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(138, 65);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 39);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Lưu";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -65,13 +54,44 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Tên";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Gray;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(189, 66);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(142, 45);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // btnOK
+            // 
+            this.btnOK.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.Location = new System.Drawing.Point(41, 66);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(142, 45);
+            this.btnOK.TabIndex = 5;
+            this.btnOK.Text = "Lưu";
+            this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmSuaChuDe
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(372, 123);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
@@ -84,9 +104,9 @@
         }
 
         #endregion
-
-        private Button button1;
         private TextBox textBox1;
         private Label label1;
+        private Components.RoundedButton btnCancel;
+        private Components.RoundedButton btnOK;
     }
 }

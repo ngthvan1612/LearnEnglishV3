@@ -92,7 +92,14 @@ namespace LearnEnglish.App.GUI.ChuDe
 
         private void btnChooseFile_Click(object sender, EventArgs e)
         {
-
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "WAV file (*.wav)|*.wav";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    this.tbFilename.Text = dlg.FileName;
+                }
+            }
         }
     }
 }

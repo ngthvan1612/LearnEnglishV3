@@ -1,4 +1,5 @@
 ﻿using LearnEnglish.App.GUI.Hoc.LearningSystem;
+using LearnEnglish.Domain.Aggregate.Vocabs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,21 @@ namespace LearnEnglish.App.Services.LearningSystem
         private byte[] _audio;
         private int _id;
 
-        public QuestionAbstract(string question, string answer, byte[] audio, int id)
+        protected Vocab equalValue;
+
+        public QuestionAbstract(Vocab vocab, string question, string answer, byte[] audio, int id)
         {
+            this.equalValue = vocab;
             this._question = question;
             this._answer = answer;
             this._audio = audio;
             this._id = id;
         }
 
+        /// <summary>
+        /// Lấy Id của vocab trong database
+        /// </summary>
+        /// <returns></returns>
         public int GetId()
         {
             return this._id;
@@ -43,7 +51,7 @@ namespace LearnEnglish.App.Services.LearningSystem
 
         public bool IsEqual(QuestionAbstract question)
         {
-            return this.Answer == question.Answer && this.QuestionHtml == question.QuestionHtml;
+            return this.equalValue == question.equalValue;
         }
 
         public virtual bool CheckAnswer(string userAnswer)

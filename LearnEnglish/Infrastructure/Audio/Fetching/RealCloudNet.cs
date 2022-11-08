@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Flurl.Http;
 using HtmlAgilityPack;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace LearnEnglish.Infrastructure.Audio.Fetching
@@ -13,6 +15,12 @@ namespace LearnEnglish.Infrastructure.Audio.Fetching
     public class RealCloudNet : IFetchAudio
     {
         private string text;
+
+        private byte[] changeMaxVolume(byte[] wav)
+        {
+            return wav;
+        }
+
         public byte[] DownloadWAV()
         {
             string html = "https://readloud.net/"
@@ -37,7 +45,7 @@ namespace LearnEnglish.Infrastructure.Audio.Fetching
                 .GetBytesAsync()
                 .GetAwaiter()
                 .GetResult();
-            return AudioProcessing.ConvertMp3ToWAV(audio);
+            return this.changeMaxVolume(AudioProcessing.ConvertMp3ToWAV(audio));
         }
 
         public void Prepare(string text)

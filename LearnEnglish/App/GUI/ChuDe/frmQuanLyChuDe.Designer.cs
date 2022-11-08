@@ -28,86 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnListFolders = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAddNewList = new System.Windows.Forms.PictureBox();
-            this.btnAddNewFolder = new System.Windows.Forms.PictureBox();
+            this.btnImport = new LearnEnglish.App.GUI.Components.RoundedButton();
             this.pnPath = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.progressStatus = new System.Windows.Forms.ToolStripProgressBar();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pnListFolders = new System.Windows.Forms.Panel();
+            this.btnExport = new LearnEnglish.App.GUI.Components.RoundedButton();
+            this.btnAddList = new LearnEnglish.App.GUI.Components.RoundedButton();
+            this.btnAddFolder = new LearnEnglish.App.GUI.Components.RoundedButton();
+            this.btnExit = new LearnEnglish.App.GUI.Components.RoundedButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNewList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNewFolder)).BeginInit();
             this.pnPath.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnListFolders
-            // 
-            this.pnListFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnListFolders.Location = new System.Drawing.Point(12, 47);
-            this.pnListFolders.Name = "pnListFolders";
-            this.pnListFolders.Size = new System.Drawing.Size(1008, 521);
-            this.pnListFolders.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnAddNewList);
-            this.panel1.Controls.Add(this.btnAddNewFolder);
-            this.panel1.Location = new System.Drawing.Point(12, 576);
+            this.panel1.Controls.Add(this.btnExit);
+            this.panel1.Controls.Add(this.btnAddFolder);
+            this.panel1.Controls.Add(this.btnAddList);
+            this.panel1.Controls.Add(this.btnExport);
+            this.panel1.Controls.Add(this.btnImport);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 580);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1008, 43);
+            this.panel1.Size = new System.Drawing.Size(1040, 64);
             this.panel1.TabIndex = 2;
             // 
-            // btnAddNewList
+            // btnImport
             // 
-            this.btnAddNewList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNewList.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddNewList.Image = global::LearnEnglish.Properties.Resources.add_list;
-            this.btnAddNewList.InitialImage = global::LearnEnglish.Properties.Resources.icons8_folder_48;
-            this.btnAddNewList.Location = new System.Drawing.Point(914, 0);
-            this.btnAddNewList.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAddNewList.Name = "btnAddNewList";
-            this.btnAddNewList.Padding = new System.Windows.Forms.Padding(5);
-            this.btnAddNewList.Size = new System.Drawing.Size(47, 43);
-            this.btnAddNewList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnAddNewList.TabIndex = 2;
-            this.btnAddNewList.TabStop = false;
-            this.btnAddNewList.Click += new System.EventHandler(this.btnAddNewList_Click);
-            // 
-            // btnAddNewFolder
-            // 
-            this.btnAddNewFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNewFolder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddNewFolder.Image = global::LearnEnglish.Properties.Resources.new_folder;
-            this.btnAddNewFolder.InitialImage = global::LearnEnglish.Properties.Resources.icons8_folder_48;
-            this.btnAddNewFolder.Location = new System.Drawing.Point(961, 0);
-            this.btnAddNewFolder.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddNewFolder.Name = "btnAddNewFolder";
-            this.btnAddNewFolder.Padding = new System.Windows.Forms.Padding(5);
-            this.btnAddNewFolder.Size = new System.Drawing.Size(47, 43);
-            this.btnAddNewFolder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnAddNewFolder.TabIndex = 1;
-            this.btnAddNewFolder.TabStop = false;
-            this.btnAddNewFolder.Click += new System.EventHandler(this.btnAddNewFolder_Click);
+            this.btnImport.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnImport.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnImport.FlatAppearance.BorderSize = 0;
+            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImport.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnImport.ForeColor = System.Drawing.Color.White;
+            this.btnImport.Location = new System.Drawing.Point(157, 8);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(132, 46);
+            this.btnImport.TabIndex = 0;
+            this.btnImport.Text = "Nhập";
+            this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // pnPath
             // 
-            this.pnPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnPath.Controls.Add(this.pictureBox1);
-            this.pnPath.Location = new System.Drawing.Point(12, 11);
+            this.pnPath.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnPath.Location = new System.Drawing.Point(0, 0);
             this.pnPath.Name = "pnPath";
-            this.pnPath.Size = new System.Drawing.Size(1008, 30);
+            this.pnPath.Size = new System.Drawing.Size(1040, 30);
             this.pnPath.TabIndex = 3;
             // 
             // pictureBox1
@@ -117,7 +87,7 @@
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::LearnEnglish.Properties.Resources.new_folder;
             this.pictureBox1.InitialImage = global::LearnEnglish.Properties.Resources.icons8_folder_48;
-            this.pictureBox1.Location = new System.Drawing.Point(1538, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(1585, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(47, 0);
@@ -125,67 +95,109 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // statusStrip1
+            // pnListFolders
             // 
-            this.statusStrip1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel,
-            this.progressStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 619);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1032, 25);
-            this.statusStrip1.TabIndex = 4;
-            this.statusStrip1.Text = "statusStrip1";
+            this.pnListFolders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnListFolders.Location = new System.Drawing.Point(0, 30);
+            this.pnListFolders.Name = "pnListFolders";
+            this.pnListFolders.Size = new System.Drawing.Size(1040, 550);
+            this.pnListFolders.TabIndex = 4;
             // 
-            // progressStatus
+            // btnExport
             // 
-            this.progressStatus.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.progressStatus.Name = "progressStatus";
-            this.progressStatus.Size = new System.Drawing.Size(100, 17);
-            this.progressStatus.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.btnExport.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnExport.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnExport.FlatAppearance.BorderSize = 0;
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExport.ForeColor = System.Drawing.Color.White;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(295, 8);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(132, 46);
+            this.btnExport.TabIndex = 1;
+            this.btnExport.Text = "Xuất";
+            this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // statusLabel
+            // btnAddList
             // 
-            this.statusLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(32, 19);
-            this.statusLabel.Text = "OK";
+            this.btnAddList.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddList.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnAddList.FlatAppearance.BorderSize = 0;
+            this.btnAddList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddList.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddList.ForeColor = System.Drawing.Color.White;
+            this.btnAddList.Location = new System.Drawing.Point(433, 9);
+            this.btnAddList.Name = "btnAddList";
+            this.btnAddList.Size = new System.Drawing.Size(173, 46);
+            this.btnAddList.TabIndex = 2;
+            this.btnAddList.Text = "Thêm danh sách";
+            this.btnAddList.UseVisualStyleBackColor = false;
+            this.btnAddList.Click += new System.EventHandler(this.btnAddNewList_Click);
+            // 
+            // btnAddFolder
+            // 
+            this.btnAddFolder.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddFolder.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnAddFolder.FlatAppearance.BorderSize = 0;
+            this.btnAddFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddFolder.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddFolder.ForeColor = System.Drawing.Color.White;
+            this.btnAddFolder.Location = new System.Drawing.Point(612, 8);
+            this.btnAddFolder.Name = "btnAddFolder";
+            this.btnAddFolder.Size = new System.Drawing.Size(132, 46);
+            this.btnAddFolder.TabIndex = 3;
+            this.btnAddFolder.Text = "Thêm mục";
+            this.btnAddFolder.UseVisualStyleBackColor = false;
+            this.btnAddFolder.Click += new System.EventHandler(this.btnAddNewFolder_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnExit.BackColor = System.Drawing.Color.Gray;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(750, 7);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(132, 46);
+            this.btnExit.TabIndex = 4;
+            this.btnExit.Text = "Thoát";
+            this.btnExit.UseVisualStyleBackColor = false;
             // 
             // frmQuanLyChuDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1032, 644);
-            this.Controls.Add(this.statusStrip1);
+            this.CancelButton = this.btnExit;
+            this.ClientSize = new System.Drawing.Size(1040, 644);
+            this.Controls.Add(this.pnListFolders);
             this.Controls.Add(this.pnPath);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnListFolders);
             this.Name = "frmQuanLyChuDe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý chủ đề";
+            this.Load += new System.EventHandler(this.frmQuanLyChuDe_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmQuanLyChuDe_KeyDown);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNewList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNewFolder)).EndInit();
             this.pnPath.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private Panel pnListFolders;
         private Panel panel1;
-        private PictureBox btnAddNewFolder;
         private Panel pnPath;
         private PictureBox pictureBox1;
-        private PictureBox btnAddNewList;
-        private StatusStrip statusStrip1;
-        private ToolStripProgressBar progressStatus;
-        private ToolStripStatusLabel statusLabel;
+        private Components.RoundedButton btnImport;
+        private Panel pnListFolders;
+        private Components.RoundedButton btnExit;
+        private Components.RoundedButton btnAddFolder;
+        private Components.RoundedButton btnAddList;
+        private Components.RoundedButton btnExport;
     }
 }

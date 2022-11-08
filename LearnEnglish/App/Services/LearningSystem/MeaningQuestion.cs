@@ -14,7 +14,7 @@ namespace LearnEnglish.App.Services.LearningSystem
         public byte[] Audio;
 
         public MeaningQuestion(Vocab vocab)
-            : base(buildQuestionDesign(vocab.Vie), vocab.Eng, vocab.Audio, vocab.Id)
+            : base(vocab, buildQuestionDesign(vocab.Vie), vocab.Eng, vocab.Audio, vocab.Id)
         {
             
         }
@@ -22,7 +22,12 @@ namespace LearnEnglish.App.Services.LearningSystem
         private static string buildQuestionDesign(string question)
         {
             string questionHtmlEncode = HttpUtility.HtmlEncode(question);
-            return $"<div style='text-align:center;vertial-align:center;line-height:90px;font-size:20px;'><span style='color:#964B00;'>{questionHtmlEncode}</span></div>";
+            return
+                $"<div style='text-align:center;vertial-align:center;line-height:90px;font-size:25px;font-weight:bold'>" +
+                $"  <span style='color:darkgreen;'>" +
+                $"    {questionHtmlEncode}" +
+                $"  </span>" +
+                $"</div>";
         }
     }
 }

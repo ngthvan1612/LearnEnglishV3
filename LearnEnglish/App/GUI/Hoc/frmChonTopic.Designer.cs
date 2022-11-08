@@ -28,44 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnStart = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.numListening = new System.Windows.Forms.NumericUpDown();
             this.numMeaning = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.dgvSelectTopic = new System.Windows.Forms.DataGridView();
+            this.tvListTopics = new System.Windows.Forms.TreeView();
+            this.btnCancel = new LearnEnglish.App.GUI.Components.RoundedButton();
+            this.btnOK = new LearnEnglish.App.GUI.Components.RoundedButton();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numListening)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMeaning)).BeginInit();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSelectTopic)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnStart);
+            this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Controls.Add(this.btnOK);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 438);
+            this.panel2.Location = new System.Drawing.Point(0, 644);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(874, 51);
+            this.panel2.Size = new System.Drawing.Size(1109, 60);
             this.panel2.TabIndex = 1;
-            // 
-            // btnStart
-            // 
-            this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnStart.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnStart.Location = new System.Drawing.Point(387, 6);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(94, 34);
-            this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "Bắt đầu";
-            this.btnStart.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -74,9 +60,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 347);
+            this.panel1.Location = new System.Drawing.Point(0, 553);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(874, 91);
+            this.panel1.Size = new System.Drawing.Size(1109, 91);
             this.panel1.TabIndex = 2;
             // 
             // numListening
@@ -86,13 +72,18 @@
             this.numListening.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.numListening.Location = new System.Drawing.Point(174, 46);
             this.numListening.Maximum = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});
             this.numListening.Name = "numListening";
-            this.numListening.Size = new System.Drawing.Size(688, 30);
+            this.numListening.Size = new System.Drawing.Size(923, 30);
             this.numListening.TabIndex = 3;
+            this.numListening.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // numMeaning
             // 
@@ -101,13 +92,18 @@
             this.numMeaning.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.numMeaning.Location = new System.Drawing.Point(174, 13);
             this.numMeaning.Maximum = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});
             this.numMeaning.Name = "numMeaning";
-            this.numMeaning.Size = new System.Drawing.Size(688, 30);
+            this.numMeaning.Size = new System.Drawing.Size(923, 30);
             this.numMeaning.TabIndex = 2;
+            this.numMeaning.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // label2
             // 
@@ -129,81 +125,80 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Số lần học nghĩa";
             // 
-            // panel3
+            // tvListTopics
             // 
-            this.panel3.Controls.Add(this.dgvSelectTopic);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(874, 347);
-            this.panel3.TabIndex = 3;
+            this.tvListTopics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvListTopics.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tvListTopics.Location = new System.Drawing.Point(0, 0);
+            this.tvListTopics.Name = "tvListTopics";
+            this.tvListTopics.Size = new System.Drawing.Size(1109, 553);
+            this.tvListTopics.TabIndex = 4;
+            this.tvListTopics.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvListTopics_AfterCheck);
             // 
-            // dgvSelectTopic
+            // btnCancel
             // 
-            this.dgvSelectTopic.AllowUserToAddRows = false;
-            this.dgvSelectTopic.AllowUserToDeleteRows = false;
-            this.dgvSelectTopic.AllowUserToResizeColumns = false;
-            this.dgvSelectTopic.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSelectTopic.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvSelectTopic.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSelectTopic.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvSelectTopic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSelectTopic.Location = new System.Drawing.Point(0, 0);
-            this.dgvSelectTopic.Name = "dgvSelectTopic";
-            this.dgvSelectTopic.RowHeadersVisible = false;
-            this.dgvSelectTopic.RowHeadersWidth = 51;
-            this.dgvSelectTopic.RowTemplate.Height = 29;
-            this.dgvSelectTopic.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSelectTopic.Size = new System.Drawing.Size(874, 347);
-            this.dgvSelectTopic.TabIndex = 0;
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCancel.BackColor = System.Drawing.Color.Gray;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(557, 7);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(142, 45);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnOK.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.Location = new System.Drawing.Point(409, 7);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(142, 45);
+            this.btnOK.TabIndex = 2;
+            this.btnOK.Text = "Học";
+            this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // frmChonTopic
             // 
-            this.AcceptButton = this.btnStart;
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 489);
-            this.Controls.Add(this.panel3);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(1109, 704);
+            this.Controls.Add(this.tvListTopics);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.MaximizeBox = false;
             this.Name = "frmChonTopic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chọn topic để học";
+            this.Click += new System.EventHandler(this.btnStart_Click);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numListening)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMeaning)).EndInit();
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSelectTopic)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private Panel panel2;
-        private Button btnStart;
         private Panel panel1;
-        private Panel panel3;
-        private DataGridView dgvSelectTopic;
         private Label label2;
         private Label label1;
         private NumericUpDown numListening;
         private NumericUpDown numMeaning;
+        private TreeView tvListTopics;
+        private Components.RoundedButton btnCancel;
+        private Components.RoundedButton btnOK;
     }
 }

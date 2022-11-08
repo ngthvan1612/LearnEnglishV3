@@ -37,7 +37,8 @@
             this.tbFilename = new System.Windows.Forms.TextBox();
             this.rbUpdateFromFile = new System.Windows.Forms.RadioButton();
             this.rbUpdateOnline = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancel = new LearnEnglish.App.GUI.Components.RoundedButton();
+            this.btnOK = new LearnEnglish.App.GUI.Components.RoundedButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -141,30 +142,52 @@
             this.rbUpdateOnline.Text = "Cập nhật online từ tiếng anh";
             this.rbUpdateOnline.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(311, 306);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 32);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Thêm";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnCreateVocabClicked);
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCancel.BackColor = System.Drawing.Color.Gray;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(360, 297);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(142, 45);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnOK.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.Location = new System.Drawing.Point(212, 297);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(142, 45);
+            this.btnOK.TabIndex = 4;
+            this.btnOK.Text = "Thêm";
+            this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.btnCreateVocabClicked);
             // 
             // frmThemTuVung
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(723, 347);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbVie);
             this.Controls.Add(this.tbEng);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "frmThemTuVung";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thêm từ vựng";
@@ -184,8 +207,9 @@
         private GroupBox groupBox1;
         private RadioButton rbUpdateFromFile;
         private RadioButton rbUpdateOnline;
-        private Button button1;
         private Button btnChooseFile;
         private TextBox tbFilename;
+        private Components.RoundedButton btnCancel;
+        private Components.RoundedButton btnOK;
     }
 }

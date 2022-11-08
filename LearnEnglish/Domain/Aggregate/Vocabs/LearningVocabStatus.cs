@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LearnEnglish.Domain.Aggregate.LearningStatuses
+namespace LearnEnglish.Domain.Aggregate.Vocabs
 {
     public partial class LearningVocabStatus
     {

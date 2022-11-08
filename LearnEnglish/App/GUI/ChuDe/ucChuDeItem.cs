@@ -29,6 +29,9 @@ namespace LearnEnglish.App.GUI.ChuDe
         public delegate void ItemDragEventHandler(object sender);
         public event ItemDragEventHandler OnItemDrag;
 
+        public delegate void ItemMoveEventHandler(object sender);
+        public event ItemMoveEventHandler OnItemMoveClicked;
+
         public ucChuDeItem(ChuDeItemType type)
         {
             InitializeComponent();
@@ -93,6 +96,11 @@ namespace LearnEnglish.App.GUI.ChuDe
         private void lbContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.OnItemClicked?.Invoke(this);
+        }
+
+        private void btnMove_Click(object sender, EventArgs e)
+        {
+            this.OnItemMoveClicked?.Invoke(this);
         }
     }
 }

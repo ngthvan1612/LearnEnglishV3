@@ -15,6 +15,15 @@ namespace LearnEnglish.Infrastructure.Repositories
 
         }
 
+        public void addResult(Vocab vocab, string result)
+        {
+            using (var dbs = this.CreateContextFactory())
+            {
+                dbs.LearningVocabStatuses.Add(LearningVocabStatus.createInstance(vocab.Id, result));
+                dbs.SaveChanges();
+            }
+        }
+
         public Vocab addVocab(Vocab vocab)
         {
             using (var dbs = this.CreateContextFactory())
@@ -35,7 +44,19 @@ namespace LearnEnglish.Infrastructure.Repositories
             }
         }
 
-        public List<VocabView> listVocabsByTopicId(int topicTreeId)
+        public List<Vocab> listVocabsByParentId(int topicTreeId)
+        {
+            using (var dbs = this.CreateContextFactory())
+            {
+                var query = dbs.Vocabs
+                    .Where(u => u.DeletedAt == null)
+                    .Where(u => u.TopicTreeId == topicTreeId);
+
+                return query.ToList();
+            }
+        }
+
+        public List<VocabView> listVocabViewsByParentId(int topicTreeId)
         {
             using (var dbs = this.CreateContextFactory())
             {
@@ -66,6 +87,17 @@ namespace LearnEnglish.Infrastructure.Repositories
             {
                 var dbVocab = dbs.Vocabs.FirstOrDefault(u => u.Id == vocab.Id);
                 dbVocab.updateEngAndVie(vocab.Eng, vocab.Vie);
+                dbs.SaveChanges();
+                return dbVocab;
+            }
+        }
+
+        public Vocab updateParent(Vocab vocab)
+        {
+            using (var dbs = this.CreateContextFactory())
+            {
+                var dbVocab = dbs.Vocabs.FirstOrDefault(u => u.Id == vocab.Id);
+                dbVocab.changeParent(vocab.TopicTreeId);
                 dbs.SaveChanges();
                 return dbVocab;
             }

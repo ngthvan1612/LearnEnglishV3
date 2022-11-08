@@ -30,7 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancel = new LearnEnglish.App.GUI.Components.RoundedButton();
+            this.btnOK = new LearnEnglish.App.GUI.Components.RoundedButton();
             this.SuspendLayout();
             // 
             // label1
@@ -51,24 +52,44 @@
             this.tbName.Size = new System.Drawing.Size(299, 34);
             this.tbName.TabIndex = 1;
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(138, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 39);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Thêm";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnCancel.BackColor = System.Drawing.Color.Gray;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(190, 68);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(142, 45);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // btnOK
+            // 
+            this.btnOK.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.Location = new System.Drawing.Point(42, 68);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(142, 45);
+            this.btnOK.TabIndex = 2;
+            this.btnOK.Text = "Thêm";
+            this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // frmThemChuDe
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(372, 123);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -76,6 +97,7 @@
             this.Name = "frmThemChuDe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "<>";
+            this.Click += new System.EventHandler(this.button1_Click_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -85,6 +107,7 @@
 
         private Label label1;
         private TextBox tbName;
-        private Button button1;
+        private Components.RoundedButton btnCancel;
+        private Components.RoundedButton btnOK;
     }
 }
